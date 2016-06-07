@@ -21,10 +21,6 @@ public class Brain2 {
     
     Brain2(Room r) {
         
-
-        
-        
-        
         Sensor tooHotS = new TooHotSensor(r);
         Sensor tooColdS = new TooColdSensor(r);
         
@@ -82,11 +78,10 @@ public class Brain2 {
         
        
         
-        r.temp=63;
+        r.temp=62;
 
         
-        for(int i=0;i<10;i++) {
-            thermostat.nextTurn();
+        for(int i=0;i<20;i++) {
 
 
             System.out.println("Room: " + r);
@@ -95,6 +90,9 @@ public class Brain2 {
             thermostat.printOpenGestalts();
 
             System.out.println("------------------------------------");
+            
+            thermostat.nextTurn();
+
         }
 
 
