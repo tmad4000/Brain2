@@ -53,7 +53,11 @@ public class Brain2 {
     
     void nextTurn() {
         for(Gestalt g: gestalts) {
-            g.nextTurn();
+            g.computeNextState();
+        }
+    
+        for(Gestalt g: gestalts) {
+            g.assumeNextState();
         }
     }
     
@@ -81,7 +85,7 @@ public class Brain2 {
         r.temp=62;
 
         
-        for(int i=0;i<20;i++) {
+        for(int i=0;i<91 ;i++) {
 
 
             System.out.println("Room: " + r);

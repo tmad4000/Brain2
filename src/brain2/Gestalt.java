@@ -16,7 +16,7 @@ class Gestalt {
     
     private boolean open;
     
-    double actionPotential=0.;
+    double actionPotential=0., nextActionPotential=0.;
     
     HashMap<Gestalt,Double> outgoing;
     
@@ -38,7 +38,7 @@ class Gestalt {
 //    }
 
     void stim(double amt) {
-        this.actionPotential+=amt;
+        this.nextActionPotential+=amt;
     }
     
 //    private void updateOpenness() {
@@ -48,18 +48,29 @@ class Gestalt {
 //            this.close();
 //    }
     
-    void nextTurn() {
+    void computeNextState() {
                 
         if(isOpen())
             for(Map.Entry<Gestalt,Double> gWeighted : outgoing.entrySet()) {
                 gWeighted.getKey().stim(gWeighted.getValue());
             }
         
-        if(actionPotential > 0)
-            actionPotential-=.2*(actionPotential-0);
         
     }
     
+        
+    void assumeNextState() {
+                
+        this.actionPotential=this.nextActionPotential;
+        
+        
+        nextActionPotential=0;
+//        if(actionPotential > 0)
+//            actionPotential-=.2*(actionPotential-0);
+   
+    }
+        
+         
     
     public String toString() {
         return String.valueOf(isOpen() + " " + actionPotential);
@@ -89,8 +100,8 @@ class PulseHeater extends Motor {
         super(r);
     }
     
-    void nextTurn() {
-        super.nextTurn();
+    void computeNextState() {
+        super.computeNextState();
         
         if(this.isOpen())
             this.room.temp+=.2;
@@ -108,11 +119,11 @@ class PulseAC extends Motor {
         super(r);
     }
     
-    void nextTurn() {
-        super.nextTurn();
+    void computeNextState() {
+        super.computeNextState();
         
         if(this.isOpen()) 
-            this.room.temp+=.2;
+            this.room.temp-=.2;
         
         
     }
@@ -144,11 +155,11 @@ class TooHotSensor extends Sensor {
         super(r);
     }
             
-    void nextTurn() {
-        if(this.room.temp > 68)
+    void computeNextState() {
+        if(this.room.temp > 69)
             this.stim(2);
                 
-        super.nextTurn();
+        super.computeNextState();
         
     }
     
@@ -164,12 +175,12 @@ class TooColdSensor extends Sensor {
         super(r);
     }
             
-    void nextTurn() {
+    void computeNextState() {
         
-        if(this.room.temp < 68)
+        if(this.room.temp < 67)
             this.stim(2);
         
-        super.nextTurn();
+        super.computeNextState();
 
     }
     
