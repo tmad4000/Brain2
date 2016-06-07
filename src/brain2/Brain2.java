@@ -29,8 +29,8 @@ public class Brain2 {
         Sensor tooColdS = new TooColdSensor(r);
         
                 
-        Motor heater = new TurnOnHeater(r);
-        Motor cooler = new TurnOnAC(r);
+        Motor heater = new PulseHeater(r);
+        Motor cooler = new PulseAC(r);
         
         {
             HashMap<Gestalt,Double> thsMap = new HashMap<Gestalt,Double>();
@@ -65,7 +65,7 @@ public class Brain2 {
         System.out.println("Brain gestalts: ");
         
         for(Gestalt g: gestalts) {
-            if(g.open)
+            if(g.isOpen())
                 System.out.println(g);
 
         }

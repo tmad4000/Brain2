@@ -14,7 +14,7 @@ import java.util.Map;
  */
 class Gestalt {
     
-    boolean open;
+    private boolean open;
     
     double actionPotential=0.;
     
@@ -29,11 +29,11 @@ class Gestalt {
     }
     
     
-    void open() {
+    private void open() {
         this.open=true;
     }
     
-    void close() {
+    private void close() {
         this.open=false;
     }
     
@@ -45,17 +45,27 @@ class Gestalt {
         
         if(actionPotential>1)
             this.open();
+        else 
+            this.close();
         
-        
-        if(open)
+        if(isOpen())
             for(Map.Entry<Gestalt,Double> gWeighted : outgoing.entrySet()) {
                 gWeighted.getKey().stim(gWeighted.getValue());
             }
+        
+        actionPotential=0;
     }
     
     
     public String toString() {
-        return String.valueOf(open);
+        return String.valueOf(isOpen());
+    }
+
+    /**
+     * @return the open
+     */
+    public boolean isOpen() {
+        return open;
     }
     
 }
@@ -69,43 +79,41 @@ class Motor extends Gestalt {
     
 }
 
-class TurnOnHeater extends Motor {
-    TurnOnHeater(Room r) {
+class PulseHeater extends Motor {
+    PulseHeater(Room r) {
         super(r);
     }
     
     void nextTurn() {
         super.nextTurn();
         
-        if(this.open)
+        if(this.isOpen())
             this.room.temp++;
         
-        this.close();
     }
 
     public String toString() {
-        return "TurnOnHeater: " + String.valueOf(open);
+        return "PulseHeater: " + String.valueOf(isOpen());
     }    
 
 }
 
-class TurnOnAC extends Motor {
-    TurnOnAC(Room r) {
+class PulseAC extends Motor {
+    PulseAC(Room r) {
         super(r);
     }
     
     void nextTurn() {
         super.nextTurn();
         
-        if(this.open) 
+        if(this.isOpen()) 
             this.room.temp--;
         
-        this.close();
         
     }
 
     public String toString() {
-        return "TurnOnAC: " + String.valueOf(open);
+        return "PulseAC: " + String.valueOf(isOpen());
     }    
 
 }
@@ -135,13 +143,13 @@ class TooHotSensor extends Sensor {
         super.nextTurn();
         
         if(this.room.temp > 72)
-            this.open();
+            this.actionPotential=2;
         else
-            this.close();
+            this.actionPotential=0;
     }
     
     public String toString() {
-        return "TooHotSensor: " + String.valueOf(open);
+        return "TooHotSensor: " + String.valueOf(isOpen());
     }    
 }
 
@@ -156,14 +164,14 @@ class TooColdSensor extends Sensor {
         super.nextTurn();
         
         if(this.room.temp < 64)
-            this.open();
+            this.actionPotential=2;
         else
-            this.close();
+            this.actionPotential=0;
     }
     
     
     public String toString() {
-        return "TooColdSensor: " + String.valueOf(open);
+        return "TooColdSensor: " + String.valueOf(isOpen());
     }    
     
 }
