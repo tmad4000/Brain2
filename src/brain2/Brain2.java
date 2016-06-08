@@ -19,37 +19,7 @@ public class Brain2 {
     ArrayList<Gestalt> gestalts=new ArrayList<Gestalt>();
     
     
-    Brain2(Room r) {
-        
-        Sensor tooHotS = new TooHotSensor(r);
-        Sensor tooColdS = new TooColdSensor(r);
-        
-                
-        Motor heater = new PulseHeater(r);
-        Motor cooler = new PulseAC(r);
-        
-        {
-            HashMap<Gestalt,Double> thsMap = new HashMap<Gestalt,Double>();
-            thsMap.put(cooler, 2.);
-            tooHotS.setOutgoing(thsMap);
-        }   
-        
-        {
-            HashMap<Gestalt,Double> tcsMap = new HashMap<Gestalt,Double>();
-            tcsMap.put(heater, 2.);
-            tooColdS.setOutgoing(tcsMap);
-        }
-                
-        
-        
-        
-        gestalts.add(tooHotS);
-        gestalts.add(tooColdS);
-        
-        gestalts.add(heater);
-        gestalts.add(cooler);
-        
-    }
+    Brain2() {}
     
     void nextTurn() {
         for(Gestalt g: gestalts) {
@@ -76,26 +46,45 @@ public class Brain2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//        
+//        Room r=new Room();
+//        r.temp=62;
+//        
+//        Brain2 thermostat = new ThermostatBrain(r);
         
-        Room r=new Room();
-        Brain2 thermostat = new Brain2(r);
         
-       
         
-        r.temp=62;
+        Worm w = new Worm();
+        Brain2 wormBrain = new WormBrain(w);
 
         
-        for(int i=0;i<91 ;i++) {
+
+        
+//        for(int i=0;i<91 ;i++) {
+//
+//
+//            System.out.println("Room: " + r);
+//            System.out.println();
+//
+//            thermostat.printOpenGestalts();
+//
+//            System.out.println("------------------------------------");
+//            
+//            thermostat.nextTurn();
+//
+//        }
+        
+        for(int i=0;i<50 ;i++) {
 
 
-            System.out.println("Room: " + r);
+            System.out.println("Worm: " + w);
             System.out.println();
 
-            thermostat.printOpenGestalts();
+            wormBrain.printOpenGestalts();
 
             System.out.println("------------------------------------");
             
-            thermostat.nextTurn();
+            wormBrain.nextTurn();
 
         }
 

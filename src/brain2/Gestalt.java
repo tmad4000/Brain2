@@ -86,107 +86,26 @@ class Gestalt {
     
 }
 
-class Motor extends Gestalt {
-    Room room;
-    Motor(Room r) {
+class Motor<T> extends Gestalt {
+    T obj; //eg room
+    Motor(T r) {
         super();
-        this.room=r;
+        this.obj=r;
     }
     
 }
 
-class PulseHeater extends Motor {
-    PulseHeater(Room r) {
-        super(r);
-    }
-    
-    void computeNextState() {
-        super.computeNextState();
-        
-        if(this.isOpen())
-            this.room.temp+=.2;
-        
-    }
-
-    public String toString() {
-        return "PulseHeater: " + super.toString();
-    }    
-
-}
-
-class PulseAC extends Motor {
-    PulseAC(Room r) {
-        super(r);
-    }
-    
-    void computeNextState() {
-        super.computeNextState();
-        
-        if(this.isOpen()) 
-            this.room.temp-=.2;
-        
-        
-    }
-
-    public String toString() {
-        return "PulseAC: " + super.toString();
-    }    
-
-}
 
 
 
 
+class Sensor<T> extends Gestalt {
+    T obj; //eg room
 
-class Sensor extends Gestalt {
-    Room room;
-
-    Sensor(Room r) {
+    Sensor(T r) {
         super();
-        this.room=r;
+        this.obj=r;
     }   
     
 }
 
-
-class TooHotSensor extends Sensor {
-    
-    TooHotSensor(Room r) {
-        super(r);
-    }
-            
-    void computeNextState() {
-        if(this.room.temp > 69)
-            this.stim(2);
-                
-        super.computeNextState();
-        
-    }
-    
-    public String toString() {
-        return "TooHotSensor: " + super.toString();
-    }    
-}
-
-class TooColdSensor extends Sensor {
-    
-    
-    TooColdSensor(Room r) {
-        super(r);
-    }
-            
-    void computeNextState() {
-        
-        if(this.room.temp < 67)
-            this.stim(2);
-        
-        super.computeNextState();
-
-    }
-    
-    
-    public String toString() {
-        return "TooColdSensor: " + super.toString();
-    }    
-    
-}
