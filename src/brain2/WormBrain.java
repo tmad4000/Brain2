@@ -30,4 +30,10 @@ public class WormBrain extends Brain2 {
         gestalts.add(eatFood);
         
     }
+    
+        
+    public void printOpenGestalts() {
+        System.out.print("Worm ");
+        super.printOpenGestalts();
+    }
 }

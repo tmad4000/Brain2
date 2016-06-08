@@ -26,7 +26,7 @@ class Worm implements NextStateComputable {
     }
     
     public String toString() {
-        return "(" + String.valueOf(x) + ", " + String.valueOf(y) + ") bloodSugar + " + String.format("%.2f",bloodSugar)  ;
+        return "(" + String.format("%.2f",x) + ", " + String.format("%.2f",y) + ") bloodSugar + " + String.format("%.2f",bloodSugar)  ;
     }
     
 }

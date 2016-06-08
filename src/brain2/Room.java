@@ -5,6 +5,8 @@
  */
 package brain2;
 
+import java.awt.geom.Rectangle2D;
+
 /**
  *
  * @author jacobcole
@@ -12,8 +14,10 @@ package brain2;
 class Room implements NextStateComputable {
     double temp = 68, nextTemp;
     
+//    Rectangle2D.Double foodArea = new Rectangle2D.Double(0, 6, 10, 4);
+    
     public String toString() {
-        return String.valueOf(temp);
+        return String.format("%.2f",temp);
     }
 
 

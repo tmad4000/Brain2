@@ -73,7 +73,7 @@ class Gestalt implements NextStateComputable {
          
     
     public String toString() {
-        return String.valueOf(isOpen() + " " + actionPotential);
+        return isOpen() + " " + actionPotential;
     }
 
     /**

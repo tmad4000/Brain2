@@ -21,7 +21,7 @@ public class Brain2 {
     
     Brain2() {}
     
-    void nextTurn() {
+    public void nextTurn() {
         for(Gestalt g: gestalts) {
             g.computeNextState();
         }
@@ -31,7 +31,7 @@ public class Brain2 {
         }
     }
     
-    void printOpenGestalts() {
+    public void printOpenGestalts() {
         System.out.println("Brain gestalts: ");
         
         for(Gestalt g: gestalts) {

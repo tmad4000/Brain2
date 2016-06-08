@@ -21,7 +21,7 @@ class TooHotSensor extends Sensor<Room> {
         super(r);
     }
             
-    void computeNextState() {
+    public void computeNextState() {
         if(this.obj.temp > 69)
             this.stim(2);
                 
@@ -41,7 +41,7 @@ class TooColdSensor extends Sensor<Room> {
         super(r);
     }
             
-    void computeNextState() {
+    public void computeNextState() {
         
         if(this.obj.temp < 67)
             this.stim(2);
@@ -64,7 +64,7 @@ class PulseHeater extends Motor<Room> {
         super(r);
     }
     
-    void computeNextState() {
+    public void computeNextState() {
         super.computeNextState();
         
         if(this.isOpen())
@@ -83,7 +83,7 @@ class PulseAC extends Motor<Room> {
         super(r);
     }
     
-    void computeNextState() {
+    public void computeNextState() {
         super.computeNextState();
         
         if(this.isOpen()) 
