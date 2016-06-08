@@ -17,7 +17,7 @@ class Worm implements NextStateComputable {
     
     @Override
     public void computeNextState() {
-        nextBloodSugar=bloodSugar-1;
+        nextBloodSugar=bloodSugar-.05;
     }
         
     @Override

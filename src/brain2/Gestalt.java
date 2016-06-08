@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author jacobcole
  */
-class Gestalt {
+class Gestalt implements NextStateComputable {
     
     private boolean open;
     
@@ -48,7 +48,7 @@ class Gestalt {
 //            this.close();
 //    }
     
-    void computeNextState() {
+    public void computeNextState() {
                 
         if(isOpen())
             for(Map.Entry<Gestalt,Double> gWeighted : outgoing.entrySet()) {
@@ -59,7 +59,7 @@ class Gestalt {
     }
     
         
-    void assumeNextState() {
+    public void assumeNextState() {
                 
         this.actionPotential=this.nextActionPotential;
         

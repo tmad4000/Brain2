@@ -20,7 +20,7 @@ class LowBloodSugarSensor extends Sensor<Worm> {
         super(r);
     }
             
-    void computeNextState() {
+    public void computeNextState() {
         if(this.obj.bloodSugar < 30)
             this.stim(2);
                 
@@ -37,12 +37,31 @@ class LowBloodSugarSensor extends Sensor<Worm> {
 
 
 
+class Forward extends Motor<Worm> {
+    Forward(Worm r) {
+        super(r);
+    }
+    
+    public void computeNextState() {
+        super.computeNextState();
+        
+        if(this.isOpen())
+            this.obj.y+=.2;
+    }
+
+    public String toString() {
+        return "Forward: " + super.toString();
+    }    
+
+}
+
+
 class EatFood extends Motor<Worm> {
     EatFood(Worm r) {
         super(r);
     }
     
-    void computeNextState() {
+    public void computeNextState() {
         super.computeNextState();
         
         if(this.isOpen())

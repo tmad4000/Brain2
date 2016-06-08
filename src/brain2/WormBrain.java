@@ -13,17 +13,20 @@ public class WormBrain extends Brain2 {
         Sensor lowBloodSugarSensor = new LowBloodSugarSensor(w);
         
                 
+        Motor goForward = new Forward(w);
+        
         Motor eatFood = new EatFood(w);
         
         
         {
-            HashMap<Gestalt,Double> tcsMap = new HashMap<Gestalt,Double>();
-            tcsMap.put(eatFood, 2.);
-            lowBloodSugarSensor.setOutgoing(tcsMap);
+            HashMap<Gestalt,Double> conn = new HashMap<Gestalt,Double>();
+            conn.put(eatFood, 2.);
+            lowBloodSugarSensor.setOutgoing(conn);
         }
         
         
         gestalts.add(lowBloodSugarSensor);
+        gestalts.add(goForward);
         gestalts.add(eatFood);
         
     }
