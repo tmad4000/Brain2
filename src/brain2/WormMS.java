@@ -9,7 +9,7 @@ package brain2;
  * WormUniverseMS = WormUniverse Motors and Sensors file
  * @author jacobcole
  */
-public class WormUniverseMS {
+public class WormMS {
     
 }
 
@@ -113,8 +113,9 @@ class TryToEatFood extends Motor<Worm> {
         super.computeNextState();
         
         if(this.isOpen()) {
-            if(room.foodArea.contains(this.obj.x, this.obj.y))
-                this.obj.bloodSugar+=.2;
+            if(room.foodArea.contains(this.obj.x, this.obj.y)){
+                this.obj.nextBloodSugar+=.2;
+            }
             else
                 System.err.println("cannot eat food on assumeNextState");
         }

@@ -46,25 +46,37 @@ public class Brain2 implements NextStateComputable {
     }
 
     public void printOpenGestalts() {
-        System.out.println("Brain gestalts: ");
+        System.out.println(this);
+
+    }
+    
+    @Override
+    public String toString() {
+        StringBuffer s = new StringBuffer("\n" + getClass().getSimpleName() + " Gestalts: \n");
         
-        for(Gestalt g: gestalts) {
+        
+         for(Gestalt g: gestalts) {
             if(g.isOpen())
-                System.out.println(g);
+                s.append("\t" + g + "\n");
 
         }
+        
+        
+        return s.toString();
     }
 
             
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        
-        Room r=new Room();
-        r.temp=62;
+        Universe u = new Universe();
         
-        Brain2 thermostat = new ThermostatBrain(r);
+//        Room r=new Room();
+//        r.temp=62;
+        
+//        Brain2 thermostat = new ThermostatBrain(r);
 
 
 //
@@ -86,32 +98,30 @@ public class Brain2 implements NextStateComputable {
 //        }
 
         
-                
-        Worm w = new Worm();
-        Brain2 wormBrain = new WormBrain(w, r);
+//                
+//        Worm w = new Worm();
+//        Brain2 wormBrain = new WormBrain(w, r);
         
-//        NextStateComputable[] uOs = {r,w};
-//        Universe u = new Universe(uOs);
         
 //      
         for(int i=0;i<50 ;i++) {
+            u.next();
 
-
-            System.out.println("Worm: " + w);
-            System.out.println("Room: " + r);
-            System.out.println();
-
-            wormBrain.printOpenGestalts();
-
-            System.out.println("------------------------------------");
-            
-            wormBrain.computeNextState();
-            w.computeNextState();
-            r.computeNextState();
-            
-            wormBrain.assumeNextState();
-            w.assumeNextState();
-            r.assumeNextState();
+//            System.out.println("Worm: " + w);
+//            System.out.println("Room: " + r);
+//            System.out.println();
+//
+//            wormBrain.printOpenGestalts();
+//
+//            System.out.println("------------------------------------");
+//            
+//            wormBrain.computeNextState();
+//            w.computeNextState();
+//            r.computeNextState();
+//            
+//            wormBrain.assumeNextState();
+//            w.assumeNextState();
+//            r.assumeNextState();
 
         }
 
