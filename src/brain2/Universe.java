@@ -63,11 +63,11 @@ class Universe {
 
     public void paintComponent(Graphics g) {
         
-//        for (UniverseObject uO : uOs) {
-//            if (uO != null) {
-//                uO.paintComponent(g);
-//            }
-//        }
+        for (NextStateComputable uO : uOs) {
+            if (uO != null) {
+                uO.paintComponent(g);
+            }
+        }
     }
     
     // print current state of all objects, not open Gestalts

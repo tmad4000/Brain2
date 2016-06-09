@@ -5,6 +5,7 @@
  */
 package brain2;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,6 +51,20 @@ public class Brain2 implements NextStateComputable {
 
     }
     
+    public Gestalt[] getOpenGestalts() {
+        
+        ArrayList<Gestalt> oGs=new ArrayList<Gestalt>();
+
+        
+         for(Gestalt g: gestalts) {
+            if(g.isOpen())
+                oGs.add(g);
+
+        }
+        
+        return oGs.toArray(new Gestalt[0]);
+    }    
+    
     @Override
     public String toString() {
         StringBuffer s = new StringBuffer("\n" + getClass().getSimpleName() + " Gestalts: \n");
@@ -57,7 +72,7 @@ public class Brain2 implements NextStateComputable {
         
          for(Gestalt g: gestalts) {
             if(g.isOpen())
-                s.append("\t" + g + "\n");
+                s.append("    " + g + "\n");
 
         }
         
@@ -136,6 +151,10 @@ public class Brain2 implements NextStateComputable {
 //        System.out.println(n);
         
         
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
     }
 
 

@@ -25,6 +25,9 @@ class UniversePanel extends JPanel {
     //            add(new JButton("Uoe"));
     //        }
     public UniversePanel(Universe u) {
+        super();
+        this.setOpaque(true);
+//        this.setBackground(Color.GREEN);
         this.setPreferredSize(new Dimension(300, 500));
 //        setBackground(Color.green);
         this.u = u;
@@ -34,6 +37,7 @@ class UniversePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         u.paintComponent(g);
+
     }
 
     public void next() throws InterruptedException {

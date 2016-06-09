@@ -5,6 +5,8 @@
  */
 package brain2;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author jacobcole
@@ -14,5 +16,8 @@ public interface NextStateComputable {
     public void assumeNextState();
 
     public void computeNextState();
+    
+    public void paintComponent(Graphics g);
+
     
 }

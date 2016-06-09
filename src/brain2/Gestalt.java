@@ -5,6 +5,7 @@
  */
 package brain2;
 
+import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,6 +83,10 @@ class Gestalt implements NextStateComputable {
     public boolean isOpen() {
 //        return open;
         return actionPotential>1;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
     }
     
 }

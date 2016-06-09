@@ -5,6 +5,8 @@
  */
 package brain2;
 
+import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -14,7 +16,7 @@ import java.awt.geom.Rectangle2D;
 class Room implements NextStateComputable {
     double temp = 68, nextTemp;
     
-    Rectangle2D.Double foodArea = new Rectangle2D.Double(0, 6, 10, 4);
+    Rectangle2D.Double foodArea = new Rectangle2D.Double(0, 300, 600, 300);
     
     public String toString() {
         return "Room " + String.format("%.2f",temp);
@@ -29,6 +31,14 @@ class Room implements NextStateComputable {
     @Override
     public void assumeNextState() {
         temp=nextTemp;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.setColor(Color.YELLOW);
+        g2.fill(foodArea);
     }
 
     

@@ -26,7 +26,7 @@ public class TMazeUniverseFrame extends JFrame {
     
     public TMazeUniverseFrame() throws InterruptedException {
         super("TMazeUniverse");
-        setSize(600, 500);
+        setSize(1000, 500);
         mP = new MainPanel();
         add(mP);
         
@@ -36,7 +36,7 @@ public class TMazeUniverseFrame extends JFrame {
         
         setVisible(true);
 
-        while (true) {
+        for(int i=0;i<50 ;i++) {
             Thread.sleep(30);
             mP.next();
         }

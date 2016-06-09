@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 class MainPanel extends JPanel {
     Universe u;
-//    GestaltPanel gP;
+    GestaltPanel gP;
     UniversePanel uP;
 
     public MainPanel() {
@@ -29,13 +29,13 @@ class MainPanel extends JPanel {
         //
         ////            add(jp)
         //
-//        gP = GestaltPanel(u.s.sm);
+        gP = new GestaltPanel(u);
         //add(gP);
         //
         setLayout(new BorderLayout());
         //
         add(uP, BorderLayout.CENTER);
-//        add(gP, BorderLayout.EAST);
+        add(gP, BorderLayout.EAST);
     }
 
     //        public void paint(Graphics g) {
@@ -43,7 +43,7 @@ class MainPanel extends JPanel {
     //        }
     public void next() throws InterruptedException {
         uP.next();
-//        gP.next();
+        gP.next();
     }
     
 }
