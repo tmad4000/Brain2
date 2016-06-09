@@ -14,11 +14,11 @@ import java.util.Scanner;
  *
  * @author jacobcole
  */
-public class Brain2 {
+public class Brain2 implements NextStateComputable {
     
     ArrayList<Gestalt> gestalts=new ArrayList<Gestalt>();
     
-    
+
     Brain2() {}
     
     public void nextTurn() {
@@ -30,7 +30,21 @@ public class Brain2 {
             g.assumeNextState();
         }
     }
-    
+ 
+    @Override
+    public void computeNextState() {
+        for(Gestalt g: gestalts) {
+            g.computeNextState();
+        }
+    }
+       
+     @Override
+    public void assumeNextState() {
+        for(Gestalt g: gestalts) {
+            g.assumeNextState();
+        }
+    }
+
     public void printOpenGestalts() {
         System.out.println("Brain gestalts: ");
         
@@ -84,16 +98,20 @@ public class Brain2 {
 
 
             System.out.println("Worm: " + w);
+            System.out.println("Room: " + r);
             System.out.println();
 
             wormBrain.printOpenGestalts();
 
             System.out.println("------------------------------------");
             
-            wormBrain.nextTurn();
-            
+            wormBrain.computeNextState();
             w.computeNextState();
+            r.computeNextState();
+            
+            wormBrain.assumeNextState();
             w.assumeNextState();
+            r.assumeNextState();
 
         }
 
@@ -109,5 +127,7 @@ public class Brain2 {
         
         
     }
+
+
     
 }
