@@ -10,10 +10,10 @@ package brain2;
  * @author jacobcole
  */
 class Worm implements NextStateComputable {
-    double x = 5;
-    double y = 5;
+    double x = 5, nextX;
+    double y = 5, nextY;
     
-    double bloodSugar = 27.1, nextBloodSugar;
+    double bloodSugar = 29.1, nextBloodSugar;
     
     Brain2 wormBrain;
     
@@ -24,12 +24,16 @@ class Worm implements NextStateComputable {
     @Override
     public void computeNextState() {
         nextBloodSugar=bloodSugar-.05;
+        nextX = x;
+        nextY = y;
         wormBrain.computeNextState();
     }
         
     @Override
     public void assumeNextState() {
         bloodSugar=nextBloodSugar;
+        x = nextX;
+        y = nextY;
         wormBrain.assumeNextState();
     }
     

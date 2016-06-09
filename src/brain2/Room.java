@@ -23,7 +23,6 @@ class Room implements NextStateComputable {
 
     @Override
     public void computeNextState() {
-        
         nextTemp= temp > 58 ? temp-.1 : temp+.1;
     }
     

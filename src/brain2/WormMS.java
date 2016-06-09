@@ -89,7 +89,7 @@ class Forward extends Motor<Worm> {
         super.computeNextState();
         
         if(this.isOpen())
-            this.obj.y+=.2;
+            this.obj.nextY +=.2;
     }
 
     public String toString() {
