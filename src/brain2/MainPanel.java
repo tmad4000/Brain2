@@ -42,8 +42,9 @@ class MainPanel extends JPanel {
     //            g.drawLine(100, 111, 200, 222);
     //        }
     public void next() throws InterruptedException {
-        uP.next();
+
         gP.next();
+        uP.next();
     }
     
 }
