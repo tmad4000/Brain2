@@ -22,11 +22,10 @@ class TooHotSensor extends Sensor<Room> {
     }
             
     public void computeNextState() {
-        if(this.obj.temp > 69)
-            this.stim(2);
-                
         super.computeNextState();
-        
+
+        if(this.obj.temp > 69)
+            this.stim(2);        
     }
     
     public String toString() {
@@ -42,12 +41,11 @@ class TooColdSensor extends Sensor<Room> {
     }
             
     public void computeNextState() {
-        
+        super.computeNextState();
+
         if(this.obj.temp < 67)
             this.stim(2);
         
-        super.computeNextState();
-
     }
     
     

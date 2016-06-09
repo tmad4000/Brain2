@@ -21,11 +21,10 @@ class LowBloodSugarSensor extends Sensor<Worm> {
     }
             
     public void computeNextState() {
-        if(this.obj.bloodSugar < 30)
-            this.stim(2);
-                
         super.computeNextState();
-        
+
+        if(this.obj.bloodSugar < 30)
+            this.stimOnNextAssumeState(2);        
     }
     
     public String toString() {
@@ -43,11 +42,10 @@ class HighBloodSugarSensor extends Sensor<Worm> {
     }
             
     public void computeNextState() {
-        if(this.obj.bloodSugar > 32)
-            this.stim(2);
-                
         super.computeNextState();
-        
+
+        if(this.obj.bloodSugar > 32)
+            this.stimOnNextAssumeState(2); 
     }
     
     public String toString() {
@@ -69,10 +67,10 @@ class FoodSensor extends Sensor<Worm> {
     }
             
     public void computeNextState() {
-        if(room.foodArea.contains(this.obj.x, this.obj.y))
-            this.stim(2);
-                
         super.computeNextState();
+
+        if(room.foodArea.contains(this.obj.x, this.obj.y))
+            this.stimOnNextAssumeState(2);
     }
     
     public String toString() {

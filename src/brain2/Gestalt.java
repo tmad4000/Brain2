@@ -37,7 +37,7 @@ class Gestalt implements NextStateComputable {
 //        this.open=false;
 //    }
 
-    void stim(double amt) {
+    void stimOnNextAssumeState(double amt) {
         this.nextActionPotential+=amt;
     }
     
@@ -52,7 +52,7 @@ class Gestalt implements NextStateComputable {
                 
         if(isOpen())
             for(Map.Entry<Gestalt,Double> gWeighted : outgoing.entrySet()) {
-                gWeighted.getKey().stim(gWeighted.getValue());
+                gWeighted.getKey().stimOnNextAssumeState(gWeighted.getValue());
             }
         
         
