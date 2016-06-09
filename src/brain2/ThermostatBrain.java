@@ -43,10 +43,5 @@ public class ThermostatBrain extends Brain2 {
         gestalts.add(cooler);
         
     }
-    
-    public void printOpenGestalts() {
-        System.out.print("Thermostat ");
-        super.printOpenGestalts();
-    }
 
 }

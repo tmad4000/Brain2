@@ -74,8 +74,5 @@ public class WormBrain extends Brain2 {
     }
     
         
-    public void printOpenGestalts() {
-        System.out.print("Worm ");
-        super.printOpenGestalts();
-    }
+
 }

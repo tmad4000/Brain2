@@ -24,10 +24,10 @@ class Universe {
         Room r=new Room();
         r.temp=62;
         
-        Worm w = new Worm();
-        Brain2 wormBrain = new WormBrain(w, r);
+        Worm w = new Worm(r);
+//        Brain2 wormBrain = new WormBrain(w, r);
         
-        NextStateComputable[] uOs = { r, w, wormBrain };
+        NextStateComputable[] uOs = { r, w };
         this.uOs = uOs;
     }
 
