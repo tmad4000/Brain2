@@ -13,7 +13,7 @@ class Worm implements NextStateComputable {
     double x = 5;
     double y = 5;
     
-    double bloodSugar = 24.1, nextBloodSugar;
+    double bloodSugar = 27.1, nextBloodSugar;
     
     @Override
     public void computeNextState() {
@@ -26,7 +26,7 @@ class Worm implements NextStateComputable {
     }
     
     public String toString() {
-        return "(" + String.format("%.2f",x) + ", " + String.format("%.2f",y) + ") bloodSugar + " + String.format("%.2f",bloodSugar)  ;
+        return "(" + String.format("%.2f",x) + ", " + String.format("%.2f",y) + ") bloodSugar: " + String.format("%.2f",bloodSugar)  ;
     }
     
 }

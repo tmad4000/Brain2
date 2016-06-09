@@ -53,45 +53,49 @@ public class Brain2 {
         Brain2 thermostat = new ThermostatBrain(r);
 
 
-
-        for(int i=0;i<91 ;i++) {
-
-
-            System.out.println("Room: " + r);
-            System.out.println();
-
-            thermostat.printOpenGestalts();
-
-            System.out.println("------------------------------------");
-            
-            thermostat.nextTurn();
-            r.computeNextState();
-            r.assumeNextState();
-
-
-        }
-
-        
-                
-//        Worm w = new Worm();
-//        Brain2 wormBrain = new WormBrain(w);
 //
-//        for(int i=0;i<50 ;i++) {
+//        for(int i=0;i<91 ;i++) {
 //
 //
-//            System.out.println("Worm: " + w);
+//            System.out.println("Room: " + r);
 //            System.out.println();
 //
-//            wormBrain.printOpenGestalts();
+//            thermostat.printOpenGestalts();
 //
 //            System.out.println("------------------------------------");
 //            
-//            wormBrain.nextTurn();
-//            
-//            w.computeNextState();
-//            w.assumeNextState();
+//            thermostat.nextTurn();
+//            r.computeNextState();
+//            r.assumeNextState();
+//
 //
 //        }
+
+        
+                
+        Worm w = new Worm();
+        Brain2 wormBrain = new WormBrain(w, r);
+        
+//        NextStateComputable[] uOs = {r,w};
+//        Universe u = new Universe(uOs);
+        
+//      
+        for(int i=0;i<50 ;i++) {
+
+
+            System.out.println("Worm: " + w);
+            System.out.println();
+
+            wormBrain.printOpenGestalts();
+
+            System.out.println("------------------------------------");
+            
+            wormBrain.nextTurn();
+            
+            w.computeNextState();
+            w.assumeNextState();
+
+        }
 
 
 //        heater.open();

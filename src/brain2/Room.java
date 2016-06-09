@@ -14,7 +14,7 @@ import java.awt.geom.Rectangle2D;
 class Room implements NextStateComputable {
     double temp = 68, nextTemp;
     
-//    Rectangle2D.Double foodArea = new Rectangle2D.Double(0, 6, 10, 4);
+    Rectangle2D.Double foodArea = new Rectangle2D.Double(0, 6, 10, 4);
     
     public String toString() {
         return String.format("%.2f",temp);
