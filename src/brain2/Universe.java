@@ -22,10 +22,10 @@ class Universe {
     
     //default universe
     public Universe() {
-        Room r=new Room();
+        AsteroidField r=new AsteroidField();
         r.temp=62;
         
-        Worm w = new Worm(r);
+        Starship w = new Starship(r);
 //        Brain2 wormBrain = new WormBrain(w, r);
         
         NextStateComputable[] uOs = { r, w };

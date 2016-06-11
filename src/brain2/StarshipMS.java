@@ -9,59 +9,53 @@ package brain2;
  * WormUniverseMS = WormUniverse Motors and Sensors file
  * @author jacobcole
  */
-public class WormMS {
+public class StarshipMS {
     
 }
 
 
-class LowBloodSugarSensor extends Sensor<Worm> {
+class LowFuelSensor extends Sensor<Starship> {
     
-    LowBloodSugarSensor(Worm obj) {
+    LowFuelSensor(Starship obj) {
         super(obj);
     }
             
     public void computeNextState() {
         super.computeNextState();
 
-        if(this.obj.bloodSugar < 30)
+        if(this.obj.fuel < 30)
             this.stimOnNextAssumeState(2);        
     }
     
-    public String toString() {
-        return "LowBloodSugarSensor: " + super.toString();
-    }    
 }
 
 
 
 
-class HighBloodSugarSensor extends Sensor<Worm> {
+class HighFuelSensor extends Sensor<Starship> {
     
-    HighBloodSugarSensor(Worm obj) {
+    HighFuelSensor(Starship obj) {
         super(obj);
     }
             
     public void computeNextState() {
         super.computeNextState();
 
-        if(this.obj.bloodSugar > 32)
+        if(this.obj.fuel > 32)
             this.stimOnNextAssumeState(2); 
     }
     
-    public String toString() {
-        return "HighBloodSugarSensor: " + super.toString();
-    }    
 }
 
 
 
 
 
-class FoodSensor extends Sensor<Worm> {
+class HarvestableFuelSensor extends Sensor<Starship> {
 
-    Room room;
+    AsteroidField room;
     
-    FoodSensor(Worm obj, Room room) {
+    HarvestableFuelSensor(Starship obj, AsteroidField room) {
         super(obj);
         this.room=room;
     }
@@ -73,17 +67,14 @@ class FoodSensor extends Sensor<Worm> {
             this.stimOnNextAssumeState(2);
     }
     
-    public String toString() {
-        return "FoodSensor: " + super.toString();
-    }    
 }
 
 
-class HitWallSensor extends Sensor<Worm> {
+class HitWallSensor extends Sensor<Starship> {
 
-    Room room;
+    AsteroidField room;
     
-    HitWallSensor(Worm obj, Room room) {
+    HitWallSensor(Starship obj, AsteroidField room) {
         super(obj);
         this.room=room;
     }
@@ -96,15 +87,12 @@ class HitWallSensor extends Sensor<Worm> {
         }
     }
     
-    public String toString() {
-        return "HitWallSensor: " + super.toString();
-    }    
 }
 
 
 
-class Forward extends Motor<Worm> {
-    Forward(Worm obj) {
+class Forward extends Motor<Starship> {
+    Forward(Starship obj) {
         super(obj);
     }
     
@@ -117,15 +105,12 @@ class Forward extends Motor<Worm> {
         }
     }
 
-    public String toString() {
-        return "Forward: " + super.toString();
-    }    
 
 }
 
 
-class TurnLeft extends Motor<Worm> {
-    TurnLeft(Worm obj) {
+class TurnLeft extends Motor<Starship> {
+    TurnLeft(Starship obj) {
         super(obj);
     }
     
@@ -137,14 +122,11 @@ class TurnLeft extends Motor<Worm> {
 
     }
 
-    public String toString() {
-        return "TurnLeft: " + super.toString();
-    }    
 
 }
 
-class TurnRight extends Motor<Worm> {
-    TurnRight(Worm obj) {
+class TurnRight extends Motor<Starship> {
+    TurnRight(Starship obj) {
         super(obj);
     }
     
@@ -156,17 +138,14 @@ class TurnRight extends Motor<Worm> {
 
     }
 
-    public String toString() {
-        return "TurnRight: " + super.toString();
-    }    
 
 }
 
 
-class TryToEatFood extends Motor<Worm> {
-    Room room;
+class TryToHarvestFuel extends Motor<Starship> {
+    AsteroidField room;
     
-    TryToEatFood(Worm obj, Room room) {
+    TryToHarvestFuel(Starship obj, AsteroidField room) {
         super(obj);
         this.room=room;
     }
@@ -176,7 +155,7 @@ class TryToEatFood extends Motor<Worm> {
         
         if(this.isOpen()) {
             if(room.foodArea.contains(this.obj.x, this.obj.y)){
-                this.obj.nextBloodSugar+=.2;
+                this.obj.nextFuel+=.2;
             }
             else
                 System.err.println("cannot eat food on assumeNextState");
@@ -184,8 +163,5 @@ class TryToEatFood extends Motor<Worm> {
         
     }
 
-    public String toString() {
-        return "EatFood: " + super.toString();
-    }    
 
 }

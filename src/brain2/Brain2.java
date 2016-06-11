@@ -88,7 +88,7 @@ public class Brain2 implements NextStateComputable {
 //        
         Universe u = new Universe();
         
-//        Room r=new Room();
+//        AsteroidField r=new AsteroidField();
 //        r.temp=62;
         
 //        Brain2 thermostat = new ThermostatBrain(r);
@@ -98,7 +98,7 @@ public class Brain2 implements NextStateComputable {
 //        for(int i=0;i<91 ;i++) {
 //
 //
-//            System.out.println("Room: " + r);
+//            System.out.println("AsteroidField: " + r);
 //            System.out.println();
 //
 //            thermostat.printOpenGestalts();
@@ -123,7 +123,7 @@ public class Brain2 implements NextStateComputable {
             u.next();
 
 //            System.out.println("Worm: " + w);
-//            System.out.println("Room: " + r);
+//            System.out.println("AsteroidField: " + r);
 //            System.out.println();
 //
 //            wormBrain.printOpenGestalts();

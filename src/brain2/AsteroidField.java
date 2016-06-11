@@ -13,7 +13,7 @@ import java.awt.geom.Rectangle2D;
  *
  * @author jacobcole
  */
-class Room implements NextStateComputable {
+class AsteroidField implements NextStateComputable {
     double temp = 68, nextTemp;
     
     Rectangle2D.Double foodArea = new Rectangle2D.Double(400, 350, 50,75);
@@ -27,7 +27,7 @@ class Room implements NextStateComputable {
     //        new Wall(200, 0, 2, 200), new Wall(250, 0, 2, 200) //vertical,down
     };
     
-    Room() {
+    AsteroidField() {
         for (Wall w: walls) {
             double transX = 50;
             double transY = 150;
@@ -39,7 +39,7 @@ class Room implements NextStateComputable {
     }
     
     public String toString() {
-        return "Room " + String.format("%.2f",temp);
+        return "AsteroidField temp:" + String.format("%.2f",temp);
     }
 
 

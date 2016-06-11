@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author jacobcole
  */
 public class ThermostatBrain extends Brain2 {
-    ThermostatBrain(Room r) {
+    ThermostatBrain(AsteroidField r) {
         
         Sensor tooHotS = new TooHotSensor(r);
         Sensor tooColdS = new TooColdSensor(r);

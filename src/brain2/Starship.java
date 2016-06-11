@@ -12,18 +12,18 @@ import java.awt.Graphics;
  *
  * @author jacobcole
  */
-class Worm extends UniverseObject implements NextStateComputable {
+class Starship extends UniverseObject implements NextStateComputable {
     double x = 300, nextX;
     double y = 350, nextY;
     
-    double bloodSugar = 27.1, nextBloodSugar;
+    double fuel = 27.1, nextFuel;
     
     Brain2 wormBrain;
-    Room room;
+    AsteroidField room;
     
-    Worm(Room room) {
+    Starship(AsteroidField room) {
          this.room = room;
-         this.wormBrain = new WormBrain(this, room);
+         this.wormBrain = new StarshipBrain(this, room);
          this.dir=90;
          this.v=5;
     }
@@ -34,7 +34,7 @@ class Worm extends UniverseObject implements NextStateComputable {
     
     @Override
     public void computeNextState() {
-        nextBloodSugar=bloodSugar-.05;
+        nextFuel=fuel-.05;
         
         // Default, nextX and nextY can get overridden subsequently
         nextX = x;
@@ -53,7 +53,7 @@ class Worm extends UniverseObject implements NextStateComputable {
             nextY = y;
         }
                 
-        bloodSugar=nextBloodSugar;
+        fuel=nextFuel;
         x = nextX;
         y = nextY;
         
@@ -61,7 +61,7 @@ class Worm extends UniverseObject implements NextStateComputable {
     }
     
     public String toString() {
-        return "Worm (" + String.format("%.2f",x) + ", " + String.format("%.2f",y) + ") bloodSugar: " + String.format("%.2f",bloodSugar) + wormBrain;
+        return getClass().getSimpleName() + ": (" + String.format("%.2f",x) + ", " + String.format("%.2f",y) + ") Fuel: " + String.format("%.2f",fuel) + wormBrain;
     }
 
     @Override

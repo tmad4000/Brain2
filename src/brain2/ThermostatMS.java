@@ -15,9 +15,9 @@ package brain2;
 //}
 
 
-class TooHotSensor extends Sensor<Room> {
+class TooHotSensor extends Sensor<AsteroidField> {
     
-    TooHotSensor(Room r) {
+    TooHotSensor(AsteroidField r) {
         super(r);
     }
             
@@ -33,10 +33,10 @@ class TooHotSensor extends Sensor<Room> {
     }    
 }
 
-class TooColdSensor extends Sensor<Room> {
+class TooColdSensor extends Sensor<AsteroidField> {
     
     
-    TooColdSensor(Room r) {
+    TooColdSensor(AsteroidField r) {
         super(r);
     }
             
@@ -57,8 +57,8 @@ class TooColdSensor extends Sensor<Room> {
 
 
 
-class PulseHeater extends Motor<Room> {
-    PulseHeater(Room r) {
+class PulseHeater extends Motor<AsteroidField> {
+    PulseHeater(AsteroidField r) {
         super(r);
     }
     
@@ -76,8 +76,8 @@ class PulseHeater extends Motor<Room> {
 
 }
 
-class PulseAC extends Motor<Room> {
-    PulseAC(Room r) {
+class PulseAC extends Motor<AsteroidField> {
+    PulseAC(AsteroidField r) {
         super(r);
     }
     

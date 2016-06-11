@@ -74,7 +74,7 @@ class Gestalt implements NextStateComputable {
          
     
     public String toString() {
-        return isOpen() + " " + actionPotential;
+        return getClass().getSimpleName() + ": " + isOpen() + " " + actionPotential;
     }
 
     /**
@@ -120,8 +120,5 @@ class TurnGestalt extends Gestalt {
         super.computeNextState();
     }
 
-    public String toString() {
-        return "Turn: " + super.toString();
-    }    
 
 }
