@@ -27,6 +27,17 @@ class Room implements NextStateComputable {
     //        new Wall(200, 0, 2, 200), new Wall(250, 0, 2, 200) //vertical,down
     };
     
+    Room() {
+        for (Wall w: walls) {
+            double transX = 50;
+            double transY = 0;
+            w.x += transX;
+            w.y += transY;
+            w.x2 += transX;
+            w.y2 += transY;
+        }
+    }
+    
     public String toString() {
         return "Room " + String.format("%.2f",temp);
     }
