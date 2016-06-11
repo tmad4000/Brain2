@@ -111,9 +111,10 @@ class Forward extends Motor<Worm> {
     public void computeNextState() {
         super.computeNextState();
         
-        if(this.isOpen())
+        if(this.isOpen()) {
             this.obj.nextX +=this.obj.dirXY()[0]*this.obj.v;
             this.obj.nextY +=this.obj.dirXY()[1]*this.obj.v;
+        }
     }
 
     public String toString() {
