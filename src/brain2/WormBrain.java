@@ -39,7 +39,26 @@ public class WormBrain extends Brain2 {
                 
         Motor goForward = new Forward(w);
         Motor turnLeft = new TurnLeft(w);
+        Motor turnRight = new TurnRight(w);
         Motor eatFood = new TryToEatFood(w,r);
+        
+        Gestalt turnGestalt = new TurnGestalt();
+        
+        // Motors like forward that can produce actions that can fail (all of them?)
+        // and have the capacity to stimulate sensors detecting that failure like
+        // hitWall need to be processed first before sensors #hack #refactor #TODO
+        gestalts.add(goForward);
+        gestalts.add(turnGestalt);
+        gestalts.add(turnLeft);
+        gestalts.add(turnRight);
+        gestalts.add(eatFood);
+        
+        
+        gestalts.add(lowBloodSugarSensor);
+        gestalts.add(highBloodSugarSensor);
+        gestalts.add(foodSensor);
+        gestalts.add(hitWallSensor);
+
         
         
         {
@@ -68,26 +87,23 @@ public class WormBrain extends Brain2 {
         {
             HashMap<Gestalt,Double> conn = new HashMap<Gestalt,Double>();
             
-            conn.put(turnLeft, 2.);
+            conn.put(turnGestalt, 2.);
 //            conn.put(goForward, -5.);
 
             hitWallSensor.setOutgoing(conn);
         }
-        
-        
-        // Motors like forward that can produce actions that can fail (all of them?)
-        // and have the capacity to stimulate sensors detecting that failure like
-        // hitWall need to be processed first before sensors #hack #refactor #TODO
-        gestalts.add(goForward);
-        gestalts.add(turnLeft);
-        gestalts.add(eatFood);
-        
-        
-        gestalts.add(lowBloodSugarSensor);
-        gestalts.add(highBloodSugarSensor);
-        gestalts.add(foodSensor);
-        gestalts.add(hitWallSensor);
+               
+        {
+            HashMap<Gestalt,Double> conn = new HashMap<Gestalt,Double>();
+            
+            conn.put(turnRight, 2.);
+//            conn.put(turnLeft, -5.);
 
+            turnGestalt.setOutgoing(conn);
+        }
+        
+        
+     
     }
     
         

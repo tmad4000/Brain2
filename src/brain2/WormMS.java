@@ -123,6 +123,7 @@ class Forward extends Motor<Worm> {
 
 }
 
+
 class TurnLeft extends Motor<Worm> {
     TurnLeft(Worm obj) {
         super(obj);
@@ -138,6 +139,25 @@ class TurnLeft extends Motor<Worm> {
 
     public String toString() {
         return "TurnLeft: " + super.toString();
+    }    
+
+}
+
+class TurnRight extends Motor<Worm> {
+    TurnRight(Worm obj) {
+        super(obj);
+    }
+    
+    public void computeNextState() {
+        super.computeNextState();
+        
+        if(this.isOpen())
+            this.obj.dir = (this.obj.dir + 5)%360 ;
+
+    }
+
+    public String toString() {
+        return "TurnRight: " + super.toString();
     }    
 
 }

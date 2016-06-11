@@ -101,9 +101,6 @@ class Motor<T> extends Gestalt {
 }
 
 
-
-
-
 class Sensor<T> extends Gestalt {
     T obj; //eg room
 
@@ -114,3 +111,17 @@ class Sensor<T> extends Gestalt {
     
 }
 
+class TurnGestalt extends Gestalt {
+    TurnGestalt() {
+        super();
+    }
+    
+    public void computeNextState() {
+        super.computeNextState();
+    }
+
+    public String toString() {
+        return "Turn: " + super.toString();
+    }    
+
+}
