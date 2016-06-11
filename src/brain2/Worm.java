@@ -19,17 +19,30 @@ class Worm implements NextStateComputable {
     double bloodSugar = 29.1, nextBloodSugar;
     
     Brain2 wormBrain;
+    Room room;
     
     Worm(Room r) {
+         this.room = r;
          this.wormBrain = new WormBrain(this, r);
     }
 
     @Override
     public void computeNextState() {
         nextBloodSugar=bloodSugar-.05;
+        
+        // Default, nextX and nextY can get overridden subsequently
         nextX = x;
         nextY = y;
+        
         wormBrain.computeNextState();
+        
+        
+        if(room.crossesWall(new Path(x,y,nextX,nextY))) {
+            nextX = x;
+            nextY = y;
+//            hitWall();
+        }
+            
     }
         
     @Override

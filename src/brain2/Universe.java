@@ -18,14 +18,7 @@ class Universe {
     NextStateComputable[] uOs;
     int time = 0;
 
-    private Wall[] walls = {
-        new Wall(200, 0, 90, 200), new Wall(200, 200, 180, 100), new Wall(100, 200, 90, 75),
-        new Wall(300, 0, 90, 200), new Wall(300, 200, 0, 100), new Wall(400, 200, 90, 75),
-        new Wall(100, 275, 0, 300), //        new Wall(300, 0, 2, 500),
-    //        new Wall(100, 200, 1, 300),
-    //        new Wall(100, 250, 1, 300),  //horizontal, right
-    //        new Wall(200, 0, 2, 200), new Wall(250, 0, 2, 200) //vertical,down
-    };
+
     
     //default universe
     public Universe() {
@@ -117,6 +110,14 @@ class Path extends UniverseObject {
     double  x2;
     double  y2;
 
+    public Path(double  x1, double  y1, double  x2, double  y2) {
+        this.x = x1;
+        this.y = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.color = Color.RED;
+    }
+    
     public Path(double  x1, double  y1, double  x2, double  y2, double  dir) {
         this.x = x1;
         this.y = y1;
