@@ -96,7 +96,7 @@ public class WormBrain extends Brain2 {
         {
             HashMap<Gestalt,Double> conn = new HashMap<Gestalt,Double>();
             
-            conn.put(turnRight, 2.);
+//            conn.put(turnRight, 2.);
             conn.put(turnLeft, 2.);
 
             turnGestalt.setOutgoing(conn);
