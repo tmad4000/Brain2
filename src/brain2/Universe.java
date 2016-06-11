@@ -18,6 +18,14 @@ class Universe {
     NextStateComputable[] uOs;
     int time = 0;
 
+    private Wall[] walls = {
+        new Wall(200, 0, 90, 200), new Wall(200, 200, 180, 100), new Wall(100, 200, 90, 75),
+        new Wall(300, 0, 90, 200), new Wall(300, 200, 0, 100), new Wall(400, 200, 90, 75),
+        new Wall(100, 275, 0, 300), //        new Wall(300, 0, 2, 500),
+    //        new Wall(100, 200, 1, 300),
+    //        new Wall(100, 250, 1, 300),  //horizontal, right
+    //        new Wall(200, 0, 2, 200), new Wall(250, 0, 2, 200) //vertical,down
+    };
     
     //default universe
     public Universe() {
@@ -80,4 +88,124 @@ class Universe {
         return s.toString();
     }
     
+}
+
+
+abstract class UniverseObject implements NextStateComputable {
+
+    double  x;
+    double  y;
+    double  dir; //dir is 0 1 2 3 clockwise from top
+    double v;
+    Color color;
+
+    /**
+     *
+     * @return 0-3 starting up going clockwise
+     */
+    public double[] dirXY() {
+        double[] o = {Math.cos(dir*2*Math.PI/360),Math.sin(dir*2*Math.PI/360)};
+        return o;
+    }
+
+}
+
+class Path extends UniverseObject {
+
+    //not really "UniverseObject" just want the methods
+
+    double  x2;
+    double  y2;
+
+    public Path(double  x1, double  y1, double  x2, double  y2, double  dir) {
+        this.x = x1;
+        this.y = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.dir = dir;
+        this.color = Color.RED;
+    }
+
+    public boolean crosses(Path w) {
+        return Line2D.linesIntersect(x, y, x2, y2, w.x, w.y, w.x2, w.y2);
+//        
+//        //assuming rectilinear now
+//        //System.out.println("dir" + Arrays.toString(dirXY())+Arrays.toString(w.dirXY()));
+//        if (dirXY()[0] != 0) {
+//            //this is horiz path
+//            if (w.dirXY()[1] != 0) {
+//                if (w.x >= Math.min(this.x, this.x2) && w.x <= Math.max(this.x, this.x2)) {
+//                    if (this.y >= Math.min(w.y, w.y2) && this.y <= Math.max(w.y, w.y2)) {
+//                        return true;
+//                    } else {
+//                        return false;
+//                    }
+//                } else {
+//                    return false;
+//                }
+//            } else {
+//                return false;
+//            }
+//        } else if (dirXY()[1] != 0) {
+//            //this is vert path
+//            if (w.dirXY()[0] != 0) {
+//                if (w.y >= Math.min(this.y, this.y2) && w.y <= Math.max(this.y, this.y2)) {
+//                    if (this.x >= Math.min(w.x, w.x2) && this.x <= Math.max(w.x, w.x2)) {
+//                        return true;
+//                    } else {
+//                        return false;
+//                    }
+//                } else {
+//                    return false;
+//                }
+//            } else {
+//                return false;
+//            }
+//        }
+//        return true;
+//        //           else {
+//        //                throw new RuntimeException("Wall not rectilinear");
+//        //            }
+//        // old:
+//        //y=m1 x + b1
+//        // y=m2 x + b2
+//        // -(b1-b2)/(m1-m2) = x
+    }
+
+    public void paintComponent(Graphics g) {
+        g.setColor(this.color);
+        g.drawLine((int)x, (int)y, (int)x2, (int)y2);
+    }
+
+    public String toString() {
+        return "((" + x + "," + y + "),(" + x2 + "," + y2 + "))";
+    }
+
+    @Override
+    public void assumeNextState() {
+    }
+
+    @Override
+    public void computeNextState() {
+    }
+
+}
+
+
+/**
+ *
+ * @author Jacob-MTech
+ */
+class Wall extends Path {
+
+    double  len;
+
+    public Wall(double  x, double  y, double  dir, double  len) {
+        super(x, y, 0, 0, dir); //#hack
+        this.len = len;
+        this.x2 = x + dirXY()[0] * len;
+        this.y2 = y + dirXY()[1] * len;
+        this.color = Color.BLACK;
+    }
+
 }
