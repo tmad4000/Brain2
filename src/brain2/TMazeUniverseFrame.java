@@ -36,7 +36,8 @@ public class TMazeUniverseFrame extends JFrame {
         
         setVisible(true);
 
-        for(int i=0;i<50 ;i++) {
+        for(int i=0;i<100 ;i++) {
+            System.out.println(i);
             Thread.sleep(30);
             mP.next();
         }

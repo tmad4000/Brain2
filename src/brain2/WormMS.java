@@ -112,11 +112,31 @@ class Forward extends Motor<Worm> {
         super.computeNextState();
         
         if(this.isOpen())
-            this.obj.nextY +=2;
+            this.obj.nextX +=this.obj.dirXY()[0]*this.obj.v;
+            this.obj.nextY +=this.obj.dirXY()[1]*this.obj.v;
     }
 
     public String toString() {
         return "Forward: " + super.toString();
+    }    
+
+}
+
+class TurnLeft extends Motor<Worm> {
+    TurnLeft(Worm obj) {
+        super(obj);
+    }
+    
+    public void computeNextState() {
+        super.computeNextState();
+        
+        if(this.isOpen())
+            this.obj.dir = (this.obj.dir - 5)%360 ;
+
+    }
+
+    public String toString() {
+        return "TurnLeft: " + super.toString();
     }    
 
 }

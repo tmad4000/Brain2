@@ -12,18 +12,20 @@ import java.awt.Graphics;
  *
  * @author jacobcole
  */
-class Worm implements NextStateComputable {
+class Worm extends UniverseObject implements NextStateComputable {
     double x = 300, nextX;
-    double y = 250, nextY;
+    double y = 350, nextY;
     
-    double bloodSugar = 29.1, nextBloodSugar;
+    double bloodSugar = 27.1, nextBloodSugar;
     
     Brain2 wormBrain;
     Room room;
     
-    Worm(Room r) {
-         this.room = r;
-         this.wormBrain = new WormBrain(this, r);
+    Worm(Room room) {
+         this.room = room;
+         this.wormBrain = new WormBrain(this, room);
+         this.dir=90;
+         this.v=5;
     }
     
     public Path getPath() {
@@ -66,7 +68,11 @@ class Worm implements NextStateComputable {
     public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
         g.fillOval((int)(x-5), (int)(y-5), 10, 10);
-//        g.drawLine((int)x, (int)y, (int)((5 + v)*dirXY()[0]+x), (int)((5+v)*dirXY()[1]+y));
+        
+        g.setColor(Color.BLACK);
+
+        
+        g.drawLine((int)x, (int)y, (int)((10 + v)*dirXY()[0]+x), (int)((10+v)*dirXY()[1]+y));
     }
     
 }

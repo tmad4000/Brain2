@@ -16,7 +16,7 @@ import java.awt.geom.Rectangle2D;
 class Room implements NextStateComputable {
     double temp = 68, nextTemp;
     
-    Rectangle2D.Double foodArea = new Rectangle2D.Double(0, 300, 600, 300);
+    Rectangle2D.Double foodArea = new Rectangle2D.Double(400, 350, 50,75);
     
     private Wall[] walls = {
         new Wall(200, 0, 90, 200), new Wall(200, 200, 180, 100), new Wall(100, 200, 90, 75),
@@ -30,7 +30,7 @@ class Room implements NextStateComputable {
     Room() {
         for (Wall w: walls) {
             double transX = 50;
-            double transY = 0;
+            double transY = 150;
             w.x += transX;
             w.y += transY;
             w.x2 += transX;
