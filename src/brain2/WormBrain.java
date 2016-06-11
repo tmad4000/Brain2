@@ -35,6 +35,7 @@ public class WormBrain extends Brain2 {
         Sensor lowBloodSugarSensor = new LowBloodSugarSensor(w);
         Sensor highBloodSugarSensor = new HighBloodSugarSensor(w);
         Sensor foodSensor = new FoodSensor(w,r);
+        Sensor hitWallSensor = new HitWallSensor(w,r);
                 
         Motor goForward = new Forward(w);
         Motor eatFood = new TryToEatFood(w,r);
@@ -64,13 +65,18 @@ public class WormBrain extends Brain2 {
         }
         
         
-        gestalts.add(lowBloodSugarSensor);
-        gestalts.add(highBloodSugarSensor);
-        gestalts.add(foodSensor);
-
+        // Motors like forward that can produce actions that can fail (all of them?)
+        // and have the capacity to stimulate sensors detecting that failure like
+        // hitWall need to be processed first before sensors #hack #refactor #TODO
         gestalts.add(goForward);
         gestalts.add(eatFood);
         
+        
+        gestalts.add(lowBloodSugarSensor);
+        gestalts.add(highBloodSugarSensor);
+        gestalts.add(foodSensor);
+        gestalts.add(hitWallSensor);
+
     }
     
         

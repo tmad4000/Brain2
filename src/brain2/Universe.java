@@ -32,8 +32,7 @@ class Universe {
         this.uOs = uOs;
     }
 
-    void next() throws InterruptedException {
-        Thread.sleep(30);
+    void next() {
         
         
         System.out.println(this);

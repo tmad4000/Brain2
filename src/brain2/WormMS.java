@@ -16,8 +16,8 @@ public class WormMS {
 
 class LowBloodSugarSensor extends Sensor<Worm> {
     
-    LowBloodSugarSensor(Worm r) {
-        super(r);
+    LowBloodSugarSensor(Worm obj) {
+        super(obj);
     }
             
     public void computeNextState() {
@@ -37,8 +37,8 @@ class LowBloodSugarSensor extends Sensor<Worm> {
 
 class HighBloodSugarSensor extends Sensor<Worm> {
     
-    HighBloodSugarSensor(Worm r) {
-        super(r);
+    HighBloodSugarSensor(Worm obj) {
+        super(obj);
     }
             
     public void computeNextState() {
@@ -61,9 +61,9 @@ class FoodSensor extends Sensor<Worm> {
 
     Room room;
     
-    FoodSensor(Worm w, Room r) {
-        super(w);
-        this.room=r;
+    FoodSensor(Worm obj, Room room) {
+        super(obj);
+        this.room=room;
     }
             
     public void computeNextState() {
@@ -79,10 +79,33 @@ class FoodSensor extends Sensor<Worm> {
 }
 
 
+class HitWallSensor extends Sensor<Worm> {
+
+    Room room;
+    
+    HitWallSensor(Worm obj, Room room) {
+        super(obj);
+        this.room=room;
+    }
+            
+    public void computeNextState() {
+        super.computeNextState();
+
+        if(room.crossesWall(obj.getPath())) {
+            this.stimOnNextAssumeState(2);
+        }
+    }
+    
+    public String toString() {
+        return "HitWallSensor: " + super.toString();
+    }    
+}
+
+
 
 class Forward extends Motor<Worm> {
-    Forward(Worm r) {
-        super(r);
+    Forward(Worm obj) {
+        super(obj);
     }
     
     public void computeNextState() {
@@ -102,9 +125,9 @@ class Forward extends Motor<Worm> {
 class TryToEatFood extends Motor<Worm> {
     Room room;
     
-    TryToEatFood(Worm w, Room r) {
-        super(w);
-        this.room=r;
+    TryToEatFood(Worm obj, Room room) {
+        super(obj);
+        this.room=room;
     }
     
     public void computeNextState() {

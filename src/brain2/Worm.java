@@ -25,7 +25,11 @@ class Worm implements NextStateComputable {
          this.room = r;
          this.wormBrain = new WormBrain(this, r);
     }
-
+    
+    public Path getPath() {
+        return new Path(x,y,nextX,nextY);
+    }
+    
     @Override
     public void computeNextState() {
         nextBloodSugar=bloodSugar-.05;
@@ -36,20 +40,21 @@ class Worm implements NextStateComputable {
         
         wormBrain.computeNextState();
         
-        
-        if(room.crossesWall(new Path(x,y,nextX,nextY))) {
-            nextX = x;
-            nextY = y;
-//            hitWall();
-        }
             
     }
         
     @Override
     public void assumeNextState() {
+        if(room.crossesWall(this.getPath())) {
+            //can't move forward
+            nextX = x;
+            nextY = y;
+        }
+                
         bloodSugar=nextBloodSugar;
         x = nextX;
         y = nextY;
+        
         wormBrain.assumeNextState();
     }
     
