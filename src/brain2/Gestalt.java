@@ -19,13 +19,16 @@ class Gestalt implements NextStateComputable {
     
     double actionPotential=0., nextActionPotential=0.;
     
+    
+    
     HashMap<Gestalt,Double> outgoing;
+    
     
     Gestalt() {
         this.outgoing=new HashMap<Gestalt,Double>();
     }    
     
-    void setOutgoing(HashMap<Gestalt,Double> outgoing) {
+    void setClosedBy(HashMap<Gestalt,Double> outgoing) {
         this.outgoing=outgoing;
     }
     
@@ -49,14 +52,9 @@ class Gestalt implements NextStateComputable {
 //            this.close();
 //    }
     
-    public void computeNextState() {
-                
-        if(isOpen())
-            for(Map.Entry<Gestalt,Double> gWeighted : outgoing.entrySet()) {
-                gWeighted.getKey().stimOnNextAssumeState(gWeighted.getValue());
-            }
-        
-        
+    public void computeNextState() { 
+        nextActionPotential=0;
+
     }
     
         
@@ -64,8 +62,6 @@ class Gestalt implements NextStateComputable {
                 
         this.actionPotential=this.nextActionPotential;
         
-        
-        nextActionPotential=0;
 //        if(actionPotential > 0)
 //            actionPotential-=.2*(actionPotential-0);
    

@@ -24,13 +24,13 @@ public class ThermostatBrain extends Brain2 {
         {
             HashMap<Gestalt,Double> thsMap = new HashMap<Gestalt,Double>();
             thsMap.put(cooler, 2.);
-            tooHotS.setOutgoing(thsMap);
+            tooHotS.setClosedBy(thsMap);
         }   
         
         {
             HashMap<Gestalt,Double> tcsMap = new HashMap<Gestalt,Double>();
             tcsMap.put(heater, 2.);
-            tooColdS.setOutgoing(tcsMap);
+            tooColdS.setClosedBy(tcsMap);
         }
                 
         

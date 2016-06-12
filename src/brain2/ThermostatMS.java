@@ -10,9 +10,9 @@ package brain2;
  * @author jacobcole
  */
 
-//public class ThermostatMS {
-//    
-//}
+public class ThermostatMS {
+    
+}
 
 
 class TooHotSensor extends Sensor<Room> {

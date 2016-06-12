@@ -6,10 +6,11 @@
 package brain2;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -18,25 +19,61 @@ import java.util.Scanner;
 public class Brain2 implements NextStateComputable {
     
     ArrayList<Gestalt> gestalts=new ArrayList<Gestalt>();
+//    ArrayList<Gestalt> abilities=new ArrayList<Gestalt>();
+    
+    /*
+    Brain's Contents
+    
+    lowBloodSugar Gestalt
+        goForward
+    
+    highBloodSugarGestalt
+        -5 tryToEatFood
+    
+    Food Sensor
+        tryToEatFood
+    
+    tryToEatFood 
+        -5 forward
+
+    HitWallSensor
+        turnLeft
+        turnRight
+    */
     
 
     Brain2() {}
-    
-    public void nextTurn() {
-        for(Gestalt g: gestalts) {
-            g.computeNextState();
-        }
-    
-        for(Gestalt g: gestalts) {
-            g.assumeNextState();
-        }
-    }
- 
+     
     @Override
     public void computeNextState() {
+        
         for(Gestalt g: gestalts) {
             g.computeNextState();
         }
+        
+        getOpenGestalts().stream().forEach(g -> {
+                List<Edge> possibleSolutionsWeighted = brainstormHowToClose(g);
+                
+                if(possibleSolutionsWeighted.size()==0) {
+                        
+                }
+                else {
+//                    Edge bestSol = possibleSolutionsWeighted.get(0);
+//                
+//                    for(Edge e: possibleSolutionsWeighted) {
+//                        if(e.weight>bestSol.weight)
+//                            bestSol=e;
+//                    }
+
+
+                    possibleSolutionsWeighted.stream()
+                        .forEach( edge -> edge.target.stimOnNextAssumeState(edge.weight));
+                    
+                }
+                
+            } 
+        );
+                
     }
        
      @Override
@@ -51,19 +88,21 @@ public class Brain2 implements NextStateComputable {
 
     }
     
-    public Gestalt[] getOpenGestalts() {
-        
-        ArrayList<Gestalt> oGs=new ArrayList<Gestalt>();
-
-        
-         for(Gestalt g: gestalts) {
-            if(g.isOpen())
-                oGs.add(g);
-
-        }
-        
-        return oGs.toArray(new Gestalt[0]);
+    public List<Gestalt> getOpenGestalts() {
+        return gestalts.stream()
+                .filter(g -> g.isOpen()).collect(Collectors.toList());
     }    
+    
+    public List<Edge> brainstormHowToClose(Gestalt g) {
+        
+//        return connections.entrySet().stream()
+//                .filter(connectionEntry -> connectionEntry.getKey() == g && 
+//                        connectionEntry.getValue().weight > 0)
+//                .map(connectionEntry -> connectionEntry.getValue())
+//                .collect(Collectors.toList());
+
+        return g.outgoing.entrySet().stream().map(entry -> new Edge(entry.getValue(), entry.getKey())).collect(Collectors.toList());
+    }
     
     @Override
     public String toString() {

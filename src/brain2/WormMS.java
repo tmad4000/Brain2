@@ -102,6 +102,7 @@ class HitWallSensor extends Sensor<Worm> {
 }
 
 
+//motors
 
 class Forward extends Motor<Worm> {
     Forward(Worm obj) {
