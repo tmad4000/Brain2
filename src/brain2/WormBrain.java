@@ -96,8 +96,6 @@ public class WormBrain extends Brain2 {
             HashMap<Gestalt,Double> conn = new HashMap<Gestalt,Double>();
             
             conn.put(eatFood, 2.);
-            conn.put(goForward, -5.);
-
             foodSensor.setClosedBy(conn);
         }     
         
@@ -122,7 +120,7 @@ public class WormBrain extends Brain2 {
             HashMap<Gestalt,Double> conn = new HashMap<Gestalt,Double>();
             
             conn.put(turnRight, 2.);
-//            conn.put(turnLeft, 2.);
+            conn.put(turnLeft, 3.);
 
             turnGestalt.setClosedBy(conn);
         }

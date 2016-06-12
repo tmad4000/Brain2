@@ -39,6 +39,71 @@ public class Brain2 implements NextStateComputable {
     HitWallSensor
         turnLeft
         turnRight
+    
+    --------------------------
+    
+    human
+    
+    lowBloodSugar
+        -stim> eatFood
+            -r> haveFood
+            -r> haveWorkingStomach
+                <stim- eatFiber
+                <inhib- eatEColi
+                
+        -stim> injectGlucose
+            -r> glucoseInjection
+    
+    haveFood
+        <stim- getFood
+            -stim> orderFood 
+            -stim> getFoodOutOfFridge 
+                -r> foodInFridge
+                    <stim- goShopping
+                    <stim- orderInstacart
+    
+    lowBloodSugar
+        -stim> eatFood
+            -r> haveFood
+            -r> haveWorkingStomach
+                <stim- eatFiber
+                <inhib- eatEColi
+                
+        -stim> injectGlucose
+            -r> glucoseInjection
+    
+    haveFood
+        <stim- getFood
+            -stim> findFood
+                
+            -stim> orderFood 
+            -stim> getFoodOutOfFridge 
+                -r> foodInFridge
+                    <stim- goShopping
+                    <stim- orderInstacart
+    
+    
+    lowBloodSugar
+        <resolves- eatFood
+            -r> haveFood
+            -r> haveWorkingStomach
+                <stim- eatFiber
+                <inhib- eatEColi
+                
+        <resolves- injectGlucose
+            -r> glucoseInjection
+    
+    haveFood
+        <stim- getFood
+            -stim> findFood
+                
+            -stim> orderFood 
+            -stim> getFoodOutOfFridge 
+                -r> foodInFridge
+                    <stim- goShopping
+                    <stim- orderInstacart
+    
+    
     */
     
 
@@ -58,16 +123,16 @@ public class Brain2 implements NextStateComputable {
                         
                 }
                 else {
-//                    Edge bestSol = possibleSolutionsWeighted.get(0);
-//                
-//                    for(Edge e: possibleSolutionsWeighted) {
-//                        if(e.weight>bestSol.weight)
-//                            bestSol=e;
-//                    }
+                    Edge bestSol = possibleSolutionsWeighted.get(0);
+                
+                    for(Edge e: possibleSolutionsWeighted) {
+                        if(e.weight>bestSol.weight)
+                            bestSol=e;
+                    }
 
-
-                    possibleSolutionsWeighted.stream()
-                        .forEach( edge -> edge.target.stimOnNextAssumeState(edge.weight));
+                    bestSol.target.stimOnNextAssumeState(bestSol.weight);
+//                    possibleSolutionsWeighted.stream()
+//                        .forEach( edge -> edge.target.stimOnNextAssumeState(edge.weight));
                     
                 }
                 
